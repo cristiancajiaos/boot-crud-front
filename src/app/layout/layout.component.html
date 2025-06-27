@@ -1,0 +1,39 @@
+<section class="layout">
+  <section class="layout-form">
+    <h3>Form</h3>
+    <p>Coming soon...</p>
+  </section>
+  <hr/>
+  <section class="layout-table">
+    <h3>
+      <fa-icon [icon]="faUserTie"></fa-icon> Employees
+    </h3>
+    <p>Coming soon...</p>
+  </section>
+  <hr/>
+  <h3>Test Buttons</h3>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" (click)="openToastr()">
+        Open Toastr
+      </button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="openSweetalert()">
+        Open Sweetalert
+      </button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="questionSweetalert()">
+        Question Sweetalert
+      </button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary"
+              [swal]="{title: 'Foo', text: 'Bar', showCancelButton: true}"
+              (confirm)="handleConfirm()">
+        Question Sweetalert
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {LayoutComponent} from "./layout/layout.component";
-import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',

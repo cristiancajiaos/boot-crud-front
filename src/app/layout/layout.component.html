@@ -1,39 +1,105 @@
 <section class="layout">
+  <!--
+  <section class="layout-control-buttons">
+    <h3>Control Buttons</h3>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="openToastr()">
+          Open Toastr
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="openSweetalert()">
+          Open Sweetalert
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="questionSweetalert()">
+          Question Sweetalert
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary"
+                [swal]="{title: 'Foo', text: 'Bar', showCancelButton: true}"
+                (confirm)="handleConfirm()">
+          Question Sweetalert
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="getEmployees()">
+          Reload Employees
+        </button>
+      </div>
+    </div>
+  </section>
+  <hr/>
+  -->
   <section class="layout-form">
     <h3>Form</h3>
-    <p>Coming soon...</p>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-2">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name"/>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mb-2">
+          <label for="department">Department</label>
+          <input type="text" class="form-control" id="department" name="deparment"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <button class="btn btn-primary">
+            <fa-icon [icon]="faAdd" [fixedWidth]="true"></fa-icon> Add User
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
   <hr/>
   <section class="layout-table">
-    <h3>
-      <fa-icon [icon]="faUserTie"></fa-icon> Employees
-    </h3>
-    <p>Coming soon...</p>
+    <ng-container *ngIf="loadingEmployees">
+      <p>
+        <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+        Loading employees...
+      </p>
+    </ng-container>
+    <ng-container *ngIf="!loadingEmployees">
+      <h3>
+        <fa-icon [icon]="faUserTie"></fa-icon> Employees
+      </h3>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.department}}</td>
+            <td>
+              <a [ngbTooltip]="'Edit'" (click)="editEmployee(employee.id)">
+                <fa-icon [icon]="faPencil" [fixedWidth]="true"></fa-icon>
+              </a>
+              <a [ngbTooltip]="'Delete'"
+                 [swal]="{title: 'Warning', text: 'Are you sure you want to delete this employee?', showCancelButton: true}"
+                 (confirm)="deleteEmployee(employee.id)">
+                <fa-icon [icon]="faTrash" [fixedWidth]="true">
+                </fa-icon>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
   </section>
-  <hr/>
-  <h3>Test Buttons</h3>
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary" (click)="openToastr()">
-        Open Toastr
-      </button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary" (click)="openSweetalert()">
-        Open Sweetalert
-      </button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary" (click)="questionSweetalert()">
-        Question Sweetalert
-      </button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary"
-              [swal]="{title: 'Foo', text: 'Bar', showCancelButton: true}"
-              (confirm)="handleConfirm()">
-        Question Sweetalert
-      </button>
-    </div>
-  </div>
 </section>

@@ -127,9 +127,7 @@
               <a [ngbTooltip]="'Edit'" (click)="editEmployee(employee.id)">
                 <fa-icon [icon]="faPencil" [fixedWidth]="true"></fa-icon>
               </a>
-              <a [ngbTooltip]="'Delete'"
-                 [swal]="{title: 'Warning', text: 'Are you sure you want to delete this employee?', showCancelButton: true}"
-                 (confirm)="deleteEmployee(employee.id)">
+              <a [ngbTooltip]="'Delete'" (click)="deleteEmployee(employee.id)">
                 <fa-icon [icon]="faTrash" [fixedWidth]="true">
                 </fa-icon>
               </a>

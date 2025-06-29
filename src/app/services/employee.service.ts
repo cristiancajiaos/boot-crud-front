@@ -45,4 +45,9 @@ export class EmployeeService {
       }
     );
   }
+
+  public deleteEmployee(id: number | undefined): Observable<Employee> {
+    return this.http.delete<Employee>(`${this.baseUrl}/employee/${id}`);
+  }
 }
+

@@ -129,9 +129,26 @@ export class LayoutComponent {
   }
 
   public deleteEmployee(id: number | undefined): void {
-    Swal.fire("Delete", `Delete Employee ${id}`);
+    Swal.fire({
+      title: 'Are you sure to delete?',
+      html: 'You are about to delete an employee. This change is <strong>irreversible</strong>. Do you really want to delete it?',
+      showConfirmButton: true,
+      showCancelButton: true,
+      icon: 'warning'
+      })
+    .then(result => {
+      if (result.isConfirmed) {
+        this.employeeService.deleteEmployee(id).subscribe(deletedEmployee => {
+          if (deletedEmployee) {
+            Swal.fire("Success", `Employee deleted successfully`, 'success');
+            this.getEmployees();
+          } else {
+            Swal.fire("Error", `There was an error trying to update the employee`, 'error');
+          }
+        });
+      }
+    });
   }
-
 
   public openToastr(): void {
     this.toastr.success("Foo", "Foo", {

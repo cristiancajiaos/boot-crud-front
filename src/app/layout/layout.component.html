@@ -41,7 +41,7 @@
   -->
   <section class="layout-form">
     <h3>Form</h3>
-    <form [formGroup]="employeeForm" (submit)="addEmployee()">
+    <form [formGroup]="employeeForm" (submit)="addOrUpdateEmployee()">
       <div class="row">
         <div class="col">
           <div class="form-group mb-2">
@@ -75,15 +75,23 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">
+            <button type="submit" class="btn btn-primary me-2" [disabled]="employeeForm.invalid">
               <fa-layers>
                 <fa-icon [icon]="faUserTie"></fa-icon>
                 <fa-layers [fixedWidth]="true">
                   <fa-icon [icon]="faCircle" transform="shrink-6 down-2 right-2"></fa-icon>
-                  <fa-icon [icon]="faAdd" transform="shrink-6 down-2 right-2" style="color:black;"></fa-icon>
+                  <fa-icon [icon]="currentEmployee.id ? faPencil : faAdd"
+                           [transform]="currentEmployee.id ? 'shrink-9 down-2 right-2' : 'shrink-6 down-2 right-2'"
+                           style="color:black;">
+                  </fa-icon>
                 </fa-layers>
               </fa-layers>
-              Add Employee
+              {{currentEmployee.id ? 'Edit' : 'Add'}}
+              Employee
+            </button>
+            <button type="button" class="btn btn-danger" (click)="cleanForm()">
+              <fa-icon [icon]="faBroom"></fa-icon>
+              Clean Form
             </button>
           </div>
         </div>

@@ -18,13 +18,31 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.baseUrl}/employees`);
   }
 
+  public getEmployee(id: number | undefined): Observable<Employee> {
+    return this.http.get<Employee>(`${this.baseUrl}/employee/${id}`);
+  }
+
   public addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(`
-    ${this.baseUrl}/employee`,
-      employee, {
-      headers: {
-        'Content-Type': 'application/json'
+    return this.http.post<Employee>(
+      `${this.baseUrl}/employee`,
+      employee,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    });
+    );
+  }
+
+  public updateEmployee(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(
+      `${this.baseUrl}/employee`,
+      employee,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
   }
 }

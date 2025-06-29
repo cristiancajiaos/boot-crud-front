@@ -17,4 +17,14 @@ export class EmployeeService {
   public getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.baseUrl}/employees`);
   }
+
+  public addEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(`
+    ${this.baseUrl}/employee`,
+      employee, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
 }

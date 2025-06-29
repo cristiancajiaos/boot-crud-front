@@ -4,6 +4,11 @@
     <h3>Control Buttons</h3>
     <div class="row">
       <div class="col">
+        <button class="btn btn-primary" (click)="addEmployee()">
+          Add Employee
+        </button>
+      </div>
+      <div class="col">
         <button class="btn btn-primary" (click)="openToastr()">
           Open Toastr
         </button>
@@ -36,29 +41,54 @@
   -->
   <section class="layout-form">
     <h3>Form</h3>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mb-2">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="name"/>
+    <form [formGroup]="employeeForm" (submit)="addEmployee()">
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-2">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   formControlName="name"/>
+            <ng-container *ngIf="employeeForm.controls['name'].invalid">
+              <small class="text-danger"
+                     *ngIf="employeeForm.controls['name'].touched &&
+                     employeeForm.controls['name'].errors?.['required']">
+                This field is required
+              </small>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-2">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" id="department" name="deparment"
+                   formControlName="department"/>
+            <ng-container *ngIf="employeeForm.controls['department'].invalid">
+              <small class="text-danger"
+                     *ngIf="employeeForm.controls['department'].touched &&
+                     employeeForm.controls['department'].errors?.['required']">
+                This field is required
+              </small>
+            </ng-container>
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group mb-2">
-          <label for="department">Department</label>
-          <input type="text" class="form-control" id="department" name="deparment"/>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">
+              <fa-layers>
+                <fa-icon [icon]="faUserTie"></fa-icon>
+                <fa-layers [fixedWidth]="true">
+                  <fa-icon [icon]="faCircle" transform="shrink-6 down-2 right-2"></fa-icon>
+                  <fa-icon [icon]="faAdd" transform="shrink-6 down-2 right-2" style="color:black;"></fa-icon>
+                </fa-layers>
+              </fa-layers>
+              Add Employee
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <button class="btn btn-primary">
-            <fa-icon [icon]="faAdd" [fixedWidth]="true"></fa-icon> Add User
-          </button>
-        </div>
-      </div>
-    </div>
+    </form>
   </section>
   <hr/>
   <section class="layout-table">

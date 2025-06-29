@@ -1,10 +1,9 @@
 export class Employee {
-  public id?: number;
+  public id?: number | undefined;
   public name: string;
   public department: string;
 
   constructor() {
-    this.id = 0;
     this.name = '';
     this.department = '';
   }
